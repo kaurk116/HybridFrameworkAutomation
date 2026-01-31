@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+   <listeners>
+        <listener class-name="utilities.ExtentReportManager"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="edge_browser">
+        <parameter name="os" value="Windows" />
+        <parameter name="browser"  value="edge"/>
+        <groups>
+            <run><include name="Regression"></include>
+                <!--<include name="Sanity"></include>-->
+               <!--<exclude name="Master"></exclude>-->
+            </run>
+        </groups>
+        <classes>
+            <!--<class name="testcases.TC_001_AccountRegistrationTest"></class>-->
+           <class name="testcases.TC_002_Login_Test"></class>
+            <!--<class name="testcases.TC_003_LoginDDT"></class>-->
+        </classes></test>
+</suite>
