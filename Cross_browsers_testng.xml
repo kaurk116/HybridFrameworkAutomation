@@ -18,4 +18,19 @@
            <class name="testcases.TC_002_Login_Test"></class>
             <!--<class name="testcases.TC_003_LoginDDT"></class>-->
         </classes></test>
+
+    <test verbose="2" preserve-order="true" name="firefox_browser">
+        <parameter name="os" value="Linux" />
+        <parameter name="browser"  value="FireFox"/>
+        <groups>
+            <run><include name="Regression"></include>
+                <!--<include name="Sanity"></include>-->
+                <!--<exclude name="Master"></exclude>-->
+            </run>
+        </groups>
+        <classes>
+            <!--<class name="testcases.TC_001_AccountRegistrationTest"></class>-->
+            <class name="testcases.TC_002_Login_Test"></class>
+            <!--<class name="testcases.TC_003_LoginDDT"></class>-->
+        </classes></test>
 </suite>

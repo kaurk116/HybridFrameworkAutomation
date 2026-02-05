@@ -9,13 +9,12 @@
         <parameter name="browser"  value="edge"/>
         <groups>
             <run><include name="Regression"></include>
-                <!--<include name="Sanity"></include>-->
-               <!--<exclude name="Master"></exclude>-->
-            </run>
+               <include name="Sanity"></include>
+             </run>
         </groups>
         <classes>
-            <!--<class name="testcases.TC_001_AccountRegistrationTest"></class>-->
+           <class name="testcases.TC_001_AccountRegistrationTest"></class>
            <class name="testcases.TC_002_Login_Test"></class>
-            <!--<class name="testcases.TC_003_LoginDDT"></class>-->
+            <class name="testcases.TC_003_LoginDDT"></class>
         </classes></test>
 </suite>

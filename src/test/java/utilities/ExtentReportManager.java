@@ -83,7 +83,6 @@ public class ExtentReportManager implements ITestListener {
 		test.log(Status.INFO, result.getThrowable().getMessage());
 		
 		try {
-			//String imgPath = new BaseClass().captureScreen(result.getName());
 			String imgPath = BaseClass.captureScreen(result.getName());
 
 			test.addScreenCaptureFromPath(imgPath);
@@ -102,9 +101,6 @@ public class ExtentReportManager implements ITestListener {
 
 	public void onFinish(ITestContext testContext) {
 		extent.flush();
-		//String pathOfExtentReport = System.getProperty("user.dir")+"\\reports\\"+repName;
-		//File extentReport = new File(pathOfExtentReport);
-
 		String pathOfExtentReport = System.getProperty("user.dir")
 				+ File.separator + "reports" + File.separator + repName;
 		File extentReport = new File(pathOfExtentReport);

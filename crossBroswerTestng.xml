@@ -8,8 +8,7 @@
         <class name="testcases.TC_001_AccountRegistrationTest">
             <methods><include name="verify_account_registration"/></methods>
         </class></classes></test>
-    <test thread-count="5" name="edgetest">
-        <parameter name="os" value="Windows" />
+    <test thread-count="5" name="edgetest">        <parameter name="os" value="Windows" />
         <parameter name="browser"  value="edge"/>
         <classes>
             <class name="testcases.TC_001_AccountRegistrationTest"/>

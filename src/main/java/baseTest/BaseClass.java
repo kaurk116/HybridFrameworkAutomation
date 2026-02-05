@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
@@ -12,16 +13,20 @@ import com.google.j2objc.annotations.Property;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.apache.logging.log4j.LogManager;//log4j
 import org.apache.logging.log4j.Logger;   //log4j
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.BeforeClass;
 
 public class BaseClass {
 	//public WebDriver driver;
@@ -38,13 +43,65 @@ public class BaseClass {
 		p=new Properties();
 		p.load(file);
 
-		switch(br.toLowerCase())
+		//Add the selenium grid
+        if(p.getProperty("execution_env").equalsIgnoreCase("remote")){
+			DesiredCapabilities capabilities=new DesiredCapabilities();
+
+			//os
+			if(os.equalsIgnoreCase("Linux"))
+			{
+				capabilities.setPlatform(Platform.LINUX);
+			}
+			else if (os.equalsIgnoreCase("mac"))
+			{
+				capabilities.setPlatform(Platform.MAC);
+			}
+			else
+			{
+				System.out.println("No matching os");
+				return;
+			}
+
+			//browser
+			switch(br.toLowerCase())
+			{
+				case "chrome": capabilities.setBrowserName("chrome"); break;
+				case "edge": capabilities.setBrowserName("MicrosoftEdge"); break;
+				case "firefox": capabilities.setBrowserName("FireFox"); break;
+				default: System.out.println("No matching browser"); return;
+			}
+
+			//run selenium grid server
+			https://www.selenium.dev/downloads/
+//karam@karam-laptop:~/Documents/Projects$ java -jar selenium-server-4.40.0.jar standalone  run this selenium server jar
+// Run Jenkins
+// https://www.jenkins.io/doc/book/installing/war-file/
+// http://localhost:9090/
+// karam@karam-laptop:~/Documents/Projects$ java -jar jenkins.war --httpPort=9090
+
+
+
+			driver=new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),capabilities);
+		}
+
+		if(p.getProperty("execution_env").equalsIgnoreCase("local"))
+		{
+
+			switch(br.toLowerCase())
+			{
+				case "chrome" : driver=new ChromeDriver(); break;
+				case "edge" : driver=new EdgeDriver(); break;
+				case "firefox": driver=new FirefoxDriver(); break;
+				default : System.out.println("Invalid browser name.."); return;
+			}
+		}
+		/*switch(br.toLowerCase())
 		{
 			case "chrome": driver=new ChromeDriver(); break;
 			case "edge": driver=new EdgeDriver(); break;
 			default: System.out.println("No matching browser..");
 				return;
-		}
+		}*/
         driver.manage().deleteAllCookies();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
@@ -98,19 +155,4 @@ public class BaseClass {
 
 		return targetFilePath;
 	}
-	/*public String captureScreen(String tname) throws IOException {
-
-		String timeStamp = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-
-		TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-		File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
-
-		String targetFilePath=System.getProperty("user.dir")+"\\screenshots\\" + tname + "_" + timeStamp + ".png";
-		File targetFile=new File(targetFilePath);
-
-		sourceFile.renameTo(targetFile);
-
-		return targetFilePath;
-
-	}*/
 }

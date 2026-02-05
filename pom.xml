@@ -5,6 +5,30 @@
   <groupId>com.automation</groupId>
   <artifactId>OpenCartHybridFramework</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <build>
+    <pluginManagement>
+
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.11.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.2.2</version>
+          <configuration>
+            <suiteXmlFiles>
+              <suiteXmlFile>Master_testng.xml</suiteXmlFile>
+            </suiteXmlFiles>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
   <packaging>jar</packaging>
 
   <name>OpenCartHybridFramework</name>
@@ -13,7 +37,6 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-
   <dependencies>
     <!-- Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
     <dependency>
@@ -48,13 +71,6 @@
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
       <version>5.5.1</version>
-      <scope>compile</scope>
-    </dependency>
-    <!-- Source: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>3.0.0-beta3</version>
       <scope>compile</scope>
     </dependency>
     <!-- Source: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
@@ -112,11 +128,18 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <!-- Source: https://mvnrepository.com/artifact/org.testng/testng -->
     <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>7.11.0</version>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>7.11.0</version>
+    <scope>compile</scope>
+  </dependency>
   </dependencies>
 </project>
