@@ -1,6 +1,6 @@
 package baseTest;
 import java.io.File;
-import java.io.FileNotFoundException;
+																																																																																																						import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -9,7 +9,7 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
 
-import com.google.j2objc.annotations.Property;
+	 import com.google.j2objc.annotations.Property;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.OutputType;
@@ -37,9 +37,9 @@ public class BaseClass {
 	@Parameters({"os", "browser"})
 	public void setup(@Optional("windows") String os, @Optional("edge") String br) throws IOException {
 		//log4j
-		logger=LogManager.getLogger(this.getClass());//Log4j
+		logger= LogManager.getLogger(this.getClass());//Log4j
 		//config file reader
-		FileReader file =new FileReader("./src/test/java/resources/config.properties");
+		FileReader file =new FileReader("./src/test/resources/config.properties");
 		p=new Properties();
 		p.load(file);
 

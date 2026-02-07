@@ -16,16 +16,16 @@ public class TC_002_Login_Test extends BaseClass {
     public void VerifyAccountLogin() throws IOException {
 
         try {
-            FileReader file =new FileReader("./src/test/java/resources/config.properties");
+            FileReader file =new FileReader("./src/test/resources/config.properties");
             p=new Properties();
             p.load(file);
        logger.info("***** Starting TC001_AccountRegistrationTest  ****");
         //Home page
         HomePage hp = new HomePage(driver);
         hp.clickMyAccount();
-        //logger.info("Clicked on MyAccount Link.. ");
+        logger.info("Clicked on MyAccount Link.. ");
         hp.ClickLogin();
-        //logger.info("Clicked on Register Link.. ");
+        logger.info("Clicked on Register Link.. ");
         //logger.info("Providing customer details...");
 
        //Account Login
